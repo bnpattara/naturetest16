@@ -1,0 +1,132 @@
+{
+  "sections": {
+    "hero-banner": {
+      "type": "hero-banner",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "title": "Sustainable Hygiene for the Wild at Heart",
+            "subheading": "Eco-friendly hygiene products for your outdoor adventures",
+            "button_text": "Shop Now",
+            "button_link": "/collections/all"
+          }
+        }
+      ]
+    },
+    "product-categories": {
+      "type": "product-categories",
+      "settings": {
+        "title": "Our Products",
+        "subheading": "Discover our range of sustainable hygiene products"
+      },
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "title": "Buff Wipes",
+            "button_text": "Learn More",
+            "button_link": "/collections/buff-wipes"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Natural Soap Bars",
+            "button_text": "Learn More",
+            "button_link": "/collections/natural-soap-bars"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Coming Soon",
+            "button_text": "Notify Me",
+            "button_link": "/pages/coming-soon"
+          }
+        }
+      ]
+    },
+    "benefits": {
+      "type": "benefits",
+      "settings": {
+        "title": "Why NatureBuff?",
+        "subheading": "Discover the benefits of our sustainable hygiene products"
+      },
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "eco",
+            "title": "Eco-Friendly",
+            "description": "Our products are made with sustainable materials and biodegradable ingredients, minimizing environmental impact."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "convenient",
+            "title": "Convenient",
+            "description": "Perfect for on-the-go use, our products are compact, lightweight, and easy to carry during your adventures."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "zero-waste",
+            "title": "Zero Waste",
+            "description": "We're committed to reducing waste by using recyclable packaging and promoting reusable solutions."
+          }
+        }
+      ]
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "title": "What Our Customers Say",
+        "subheading": "Hear from our satisfied customers about their experience with NatureBuff"
+      },
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Sarah Johnson",
+            "title": "Outdoor Enthusiast",
+            "quote": "NatureBuff's products have completely changed my outdoor experience. The wipes are gentle on my skin and the environment."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Michael Chen",
+            "title": "Hiking Guide",
+            "quote": "As someone who spends most of their time outdoors, I appreciate how convenient and eco-friendly these products are."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "name": "Emily Rodriguez",
+            "title": "Environmental Activist",
+            "quote": "Finally, a hygiene brand that truly cares about sustainability. Their zero-waste approach is exactly what we need more of."
+          }
+        }
+      ]
+    },
+    "community": {
+      "type": "community",
+      "settings": {
+        "title": "Join the NatureBuff Community",
+        "subheading": "Stay updated with our latest products, tips, and eco-friendly initiatives",
+        "button_text": "Subscribe"
+      }
+    }
+  },
+  "order": [
+    "hero-banner",
+    "product-categories",
+    "benefits",
+    "testimonials",
+    "community"
+  ]
+} 

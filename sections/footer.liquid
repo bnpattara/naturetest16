@@ -1,0 +1,73 @@
+<footer class="footer">
+  <div class="footer__content">
+    <div class="footer__column">
+      <h2 class="footer__heading">{{ section.settings.footer_heading }}</h2>
+      <div class="footer__text">{{ section.settings.footer_text }}</div>
+    </div>
+
+    <div class="footer__column">
+      <h3 class="footer__subheading">{{ section.settings.menu_heading }}</h3>
+      <ul class="footer__menu">
+        {%- for link in linklists.footer.links -%}
+          <li class="footer__menu-item">
+            <a href="{{ link.url }}" class="footer__menu-link">{{ link.title }}</a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+
+    <div class="footer__column">
+      <h3 class="footer__subheading">{{ section.settings.social_heading }}</h3>
+      <div class="footer__social">
+        {%- if settings.social_facebook_link != blank -%}
+          <a href="{{ settings.social_facebook_link }}" class="footer__social-link">
+            {% render 'icon-facebook' %}
+          </a>
+        {%- endif -%}
+        {%- if settings.social_instagram_link != blank -%}
+          <a href="{{ settings.social_instagram_link }}" class="footer__social-link">
+            {% render 'icon-instagram' %}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <div class="footer__copyright">
+      &copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url }}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "footer_heading",
+      "label": "Heading",
+      "default": "About Us"
+    },
+    {
+      "type": "richtext",
+      "id": "footer_text",
+      "label": "Text",
+      "default": "<p>Share information about your brand with your customers.</p>"
+    },
+    {
+      "type": "text",
+      "id": "menu_heading",
+      "label": "Menu heading",
+      "default": "Quick Links"
+    },
+    {
+      "type": "text",
+      "id": "social_heading",
+      "label": "Social heading",
+      "default": "Follow Us"
+    }
+  ]
+}
+{% endschema %} 

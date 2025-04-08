@@ -1,0 +1,215 @@
+{%- style -%}
+  .benefits {
+    padding: 4rem 0;
+    background-color: var(--color-background);
+  }
+
+  .benefits__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .benefits__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .benefits__title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+  }
+
+  .benefits__subheading {
+    font-size: 1.25rem;
+    color: var(--color-text);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .benefits__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .benefit-card {
+    text-align: center;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .benefit-card__icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary-light);
+    border-radius: 50%;
+  }
+
+  .benefit-card__icon svg {
+    width: 40px;
+    height: 40px;
+    color: var(--color-primary);
+  }
+
+  .benefit-card__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+  }
+
+  .benefit-card__description {
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .benefits__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .benefits__title {
+      font-size: 2rem;
+    }
+
+    .benefits__subheading {
+      font-size: 1.1rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="benefits">
+  <div class="benefits__container">
+    <div class="benefits__header">
+      <h2 class="benefits__title">{{ section.settings.title }}</h2>
+      <p class="benefits__subheading">{{ section.settings.subheading }}</p>
+    </div>
+
+    <div class="benefits__grid">
+      {% for block in section.blocks %}
+        <div class="benefit-card" {{ block.shopify_attributes }}>
+          <div class="benefit-card__icon">
+            {% case block.settings.icon %}
+              {% when 'eco' %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L2 12h3v8h14v-8h3L12 2zm0 2.8L18 10v8H6v-8l6-5.2z"/>
+                </svg>
+              {% when 'convenient' %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z"/>
+                </svg>
+              {% when 'zero-waste' %}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                </svg>
+            {% endcase %}
+          </div>
+          <h3 class="benefit-card__title">{{ block.settings.title }}</h3>
+          <p class="benefit-card__description">{{ block.settings.description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Benefits",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Why NatureBuff?"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Discover the benefits of our sustainable hygiene products"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            {
+              "value": "eco",
+              "label": "Eco-Friendly"
+            },
+            {
+              "value": "convenient",
+              "label": "Convenient"
+            },
+            {
+              "value": "zero-waste",
+              "label": "Zero Waste"
+            }
+          ],
+          "default": "eco"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefits",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "eco",
+            "title": "Eco-Friendly",
+            "description": "Our products are made with sustainable materials and biodegradable ingredients, minimizing environmental impact."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "convenient",
+            "title": "Convenient",
+            "description": "Perfect for on-the-go use, our products are compact, lightweight, and easy to carry during your adventures."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "zero-waste",
+            "title": "Zero Waste",
+            "description": "We're committed to reducing waste by using recyclable packaging and promoting reusable solutions."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %} 

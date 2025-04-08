@@ -1,0 +1,118 @@
+{%- style -%}
+  .community {
+    padding: 4rem 0;
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  .community__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    text-align: center;
+  }
+
+  .community__title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .community__subheading {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .community__form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .community__input {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+
+  .community__button {
+    background-color: white;
+    color: var(--color-primary);
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .community__button:hover {
+    background-color: var(--color-background);
+  }
+
+  @media (max-width: 768px) {
+    .community__form {
+      flex-direction: column;
+    }
+
+    .community__title {
+      font-size: 2rem;
+    }
+
+    .community__subheading {
+      font-size: 1.1rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="community">
+  <div class="community__container">
+    <h2 class="community__title">{{ section.settings.title }}</h2>
+    <p class="community__subheading">{{ section.settings.subheading }}</p>
+    
+    <form class="community__form" action="/contact#contact_form" method="post">
+      <input type="hidden" name="form_type" value="customer">
+      <input type="hidden" name="utf8" value="✓">
+      <input type="email" 
+             name="contact[email]" 
+             class="community__input" 
+             placeholder="Enter your email"
+             required>
+      <button type="submit" class="community__button">{{ section.settings.button_text }}</button>
+    </form>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Community",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Join the NatureBuff Community"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Stay updated with our latest products, tips, and eco-friendly initiatives"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Subscribe"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Community"
+    }
+  ]
+}
+{% endschema %} 

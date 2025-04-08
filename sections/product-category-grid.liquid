@@ -1,0 +1,205 @@
+{%- style -%}
+  .product-categories {
+    padding: 4rem 0;
+    background-color: var(--color-background);
+  }
+
+  .product-categories__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .product-categories__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .product-categories__title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+  }
+
+  .product-categories__subheading {
+    font-size: 1.25rem;
+    color: var(--color-text);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .product-categories__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .product-category {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 1;
+  }
+
+  .product-category__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .product-category:hover .product-category__image {
+    transform: scale(1.05);
+  }
+
+  .product-category__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem;
+    color: white;
+  }
+
+  .product-category__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .product-category__button {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .product-category__button:hover {
+    background-color: var(--color-primary-dark);
+  }
+
+  @media (max-width: 768px) {
+    .product-categories__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .product-categories__title {
+      font-size: 2rem;
+    }
+
+    .product-categories__subheading {
+      font-size: 1.1rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="product-categories">
+  <div class="product-categories__container">
+    <div class="product-categories__header">
+      <h2 class="product-categories__title">{{ section.settings.title }}</h2>
+      <p class="product-categories__subheading">{{ section.settings.subheading }}</p>
+    </div>
+
+    <div class="product-categories__grid">
+      {% for block in section.blocks %}
+        <div class="product-category" {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}
+            {{ block.settings.image | image_url: width: 800 | image_tag: class: 'product-category__image' }}
+          {% endif %}
+          <div class="product-category__overlay">
+            <h3 class="product-category__title">{{ block.settings.title }}</h3>
+            <a href="{{ block.settings.button_link }}" class="product-category__button">
+              {{ block.settings.button_text }}
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Categories",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Our Products"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Discover our range of sustainable hygiene products"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Categories",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "title": "Buff Wipes",
+            "button_text": "Learn More"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Natural Soap Bars",
+            "button_text": "Learn More"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Coming Soon",
+            "button_text": "Notify Me"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %} 

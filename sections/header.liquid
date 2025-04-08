@@ -1,0 +1,138 @@
+{%- style -%}
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: var(--color-background);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+  }
+
+  .header__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header__logo {
+    max-width: 150px;
+  }
+
+  .header__nav {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .header__nav-link {
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .header__nav-link:hover {
+    color: var(--color-primary);
+  }
+
+  .header__actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .header__shop-button {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+
+  .header__shop-button:hover {
+    background-color: var(--color-primary-dark);
+  }
+
+  .header__cart-icon {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .header__cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: var(--color-primary);
+    color: white;
+    font-size: 0.75rem;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 768px) {
+    .header__nav {
+      display: none;
+    }
+
+    .header__container {
+      padding: 0.5rem 1rem;
+    }
+  }
+{%- endstyle -%}
+
+<header class="header">
+  <div class="header__container">
+    <a href="{{ routes.root_url }}" class="header__logo">
+      {% if section.settings.logo != blank %}
+        {{ section.settings.logo | image_url: width: 150 | image_tag }}
+      {% else %}
+        <span class="h2">{{ shop.name }}</span>
+      {% endif %}
+    </a>
+
+    <nav class="header__nav">
+      {% for link in linklists[section.settings.menu].links %}
+        <a href="{{ link.url }}" class="header__nav-link">{{ link.title }}</a>
+      {% endfor %}
+    </nav>
+
+    <div class="header__actions">
+      <a href="{{ routes.all_products_collection_url }}" class="header__shop-button">Shop Now</a>
+      <div class="header__cart-icon">
+        <a href="{{ routes.cart_url }}">
+          {% render 'icon-cart' %}
+          <span class="header__cart-count">{{ cart.item_count }}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %} 
